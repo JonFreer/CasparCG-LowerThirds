@@ -16,6 +16,10 @@ function update(arg) { //the key/value pairs configured in CasparCG client are p
     if (array["f2"] !== undefined) {
         $(".blue").css('background-color',array["f2"]);
     }
+    console.log(array["f3"])
+    if (array["f3"] !== undefined) {
+        $("body").get(0).style.setProperty("--scale", array["f3"]);
+    }
 }
 
 

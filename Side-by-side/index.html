@@ -6,42 +6,47 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <style>
+        body{
+            --scale:1;
+            overflow:hidden;
+        }
+
         #lower-third-outline {
-            height: 65px;
-            width: 800px;
+            height: calc(65px*var(--scale));
+            width: calc(1500px*var(--scale));
             position: absolute;
-            bottom: 30px;
-            left: 50px;
+            bottom: calc(30px*var(--scale));
+            left: calc(50px*var(--scale));
             display: grid;
             grid-template-columns:min-content auto;
         }
 
         #left {   
             width: 100%;
-            height: 65px;
+            height: calc(65px*var(--scale));
             position: relative;
         }
 
         #right {
-            height: 65px;
+            height: calc(65px*var(--scale));
             overflow:hidden;
         }
 
         #text-element {
             font-family: 'Roboto Condensed', sans-serif;
             color: white;
-            letter-spacing:-2px;
+            letter-spacing:calc(-2px*var(--scale));
             font-weight: 700;
-            font-size: 55px;
+            font-size: calc(55px*var(--scale));
             position: relative;
             white-space: nowrap;
-            padding-right:20px;
+            padding-right:calc(20px*var(--scale));
         }
 
         #text-element2 {
             font-family: 'Roboto Condensed', sans-serif;
             color: white;
-            font-size: 55;
+            font-size: calc(55px*var(--scale));
             font-weight: 300;
             position: relative;
             overflow: visible;
@@ -52,13 +57,13 @@
         }
 
         .text1{
-            left:400px;
+            left:calc(600px*var(--scale));
             transition-delay: 0s;
             transition: left 2s;
         }
 
         .text2{
-            left:-400px;
+            left:calc(-600px*var(--scale));
             transition-delay: 0s;
             transition: left 2s;
         }
@@ -72,7 +77,7 @@
             transition-delay: 1.5s;
             transition: width 1.5s, left 1s;
             background-color: #213df2;
-            left:-70px;
+            left:calc(-70px*var(--scale));
             
             position: relative;
             overflow:hidden;
@@ -92,11 +97,11 @@
     <div id="lower-third-outline">
         <div id="left">
             <div class="blue" >
-            <div class="text1" id="text-element">Jon</div>
+            <div class="text1" id="text-element"></div>
         </div>
         </div>
         <div id="right">
-            <div class="text2" id="text-element2">Test</div>
+            <div class="text2" id="text-element2"></div>
         </div>
 
     </div>
