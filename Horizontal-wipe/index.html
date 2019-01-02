@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        #lower-third-outline {
+            height: 150px;
+            width: 800px;
+            /* background-color: red; */
+            position: absolute;
+            bottom: 30px;
+            text-shadow: 3px 3px 8px #585858;
+            left: 30px;
+        }
+
+        #top {
+            /* background-color: blue; */
+            width: 100%;
+            height: 60px;
+            top: 10px;
+            position: absolute;
+            overflow:hidden;
+
+        }
+
+        #bottom {
+            /* background-color: yellow; */
+            width: 100%;
+            height: 60px;
+            top: 80px;
+            position: absolute;
+            overflow:hidden;
+
+        }
+
+        #text-element {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 55px;
+            position: relative;
+            left: 20px;
+            /* overflow: visible; */
+            white-space: nowrap;
+            /* bottom: -100; */
+            /* height: 0%; */
+            transition: all 2s;
+        }
+
+        #text-element2 {
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            font-size: 45px;
+            position: relative;
+            left: 20px;
+            overflow: visible;
+            white-space: nowrap;
+            transition: all 2s;
+        }
+
+        #bar1 {
+            position: absolute;
+            width: 10px;
+            transition: all 2s;
+            background-color: white;
+            bottom: 0;
+        }
+
+        #bar2 {
+            position: absolute;
+            width: 10px;
+            transition: all 2s;
+            background-color: white;
+            top: 0;
+        }
+
+        .bars {
+            box-shadow: 3px 3px 8px #585858;
+            transition: all 2s;
+            height: 0;
+        }
+
+        .added {
+            height: 100%;
+        }
+        
+        .text1{
+            bottom:-200px;
+        }
+
+        .text2{
+            bottom:200px;
+        }
+
+        .added2{
+            bottom:0px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="lower-third-outline">
+        <div id="top">
+            <div id="bar1" class="bars"> </div>
+            <div class="text1" id="text-element"></div>
+        </div>
+        <div id="bottom">
+            <div id="bar2" class="bars"> </div>
+            <div class="text2" id="text-element2"></div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
