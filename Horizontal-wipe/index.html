@@ -5,21 +5,27 @@
     <script type="text/javascript" src="casparcg.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
+
+        body {
+            --scale: 1;
+            overflow: hidden;
+        }
+
         #lower-third-outline {
-            height: 150px;
-            width: 800px;
-            /* background-color: red; */
-            position: absolute;
-            bottom: 30px;
+            height: calc(150px*var(--scale));
+            width: calc(800px*var(--scale));
+            bottom: calc(30px*var(--scale));
+            left: calc(30px*var(--scale));
+
             text-shadow: 3px 3px 8px #585858;
-            left: 30px;
+            position: absolute;
         }
 
         #top {
             /* background-color: blue; */
             width: 100%;
-            height: 60px;
-            top: 10px;
+            height: calc(60px*var(--scale));
+            top: calc(10px*var(--scale));
             position: absolute;
             overflow:hidden;
 
@@ -28,8 +34,8 @@
         #bottom {
             /* background-color: yellow; */
             width: 100%;
-            height: 60px;
-            top: 80px;
+            height: calc(60px*var(--scale));
+            top: calc(80px*var(--scale));
             position: absolute;
             overflow:hidden;
 
@@ -38,41 +44,41 @@
         #text-element {
             font-family: 'Roboto', sans-serif;
             color: white;
-            font-size: 55px;
+            font-size: calc(55px*var(--scale));
             position: relative;
-            left: 20px;
+            left: calc(20px*var(--scale));
             white-space: nowrap;
-            transition: all 2s;
+            transition: bottom 2s;
         }
 
         #text-element2 {
             font-family: 'Roboto', sans-serif;
             color: white;
-            font-size: 45px;
+            font-size: calc(45px*var(--scale));
             position: relative;
-            left: 20px;
+            left: calc(20px*var(--scale));
             overflow: visible;
             white-space: nowrap;
-            transition: all 2s;
+            transition: bottom 2s;
         }
 
         #bar1 {
             position: absolute;
-            width: 10px;
-            transition: all 2s;
+            width: calc(10px*var(--scale));
+            transition: height 2s;
             bottom: 0;
         }
 
         #bar2 {
             position: absolute;
-            width: 10px;
-            transition: all 2s;
+            width: calc(10px*var(--scale));
+            transition: height 2s;
             top: 0;
         }
 
         .bars {
             box-shadow: 3px 3px 8px #585858;
-            transition: all 2s;
+            transition: height 2s;
             height: 0;
             background-color:white;
         }
@@ -82,11 +88,11 @@
         }
         
         .text1{
-            bottom:-200px;
+            bottom:calc(-200px*var(--scale));
         }
 
         .text2{
-            bottom:200px;
+            bottom:calc(200px*var(--scale));
         }
 
         .added2{
