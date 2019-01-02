@@ -1,0 +1,106 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        #lower-third-outline {
+            height: 65px;
+            width: 800px;
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            display: grid;
+            grid-template-columns:min-content auto;
+        }
+
+        #left {   
+            width: 100%;
+            height: 65px;
+            position: relative;
+        }
+
+        #right {
+            height: 65px;
+            overflow:hidden;
+        }
+
+        #text-element {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            letter-spacing:-2px;
+            font-weight: 700;
+            font-size: 55px;
+            position: relative;
+            white-space: nowrap;
+            padding-right:20px;
+        }
+
+        #text-element2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            font-size: 55;
+            font-weight: 300;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+            
+            
+            padding-left: 0px;
+        }
+
+        .text1{
+            left:400px;
+            transition-delay: 0s;
+            transition: left 2s;
+        }
+
+        .text2{
+            left:-400px;
+            transition-delay: 0s;
+            transition: left 2s;
+        }
+
+        .added2{
+            transition-delay: 1s;
+            left:10px;
+        }
+
+        .blue{
+            transition-delay: 1.5s;
+            transition: width 1.5s, left 1s;
+            background-color: #213df2;
+            left:-70px;
+            
+            position: relative;
+            overflow:hidden;
+            width:0%;
+        }
+
+        .blueAdd{
+            transition-delay: 0s;
+            left:0px;
+            width:100%;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lower-third-outline">
+        <div id="left">
+            <div class="blue" >
+            <div class="text1" id="text-element">Jon</div>
+        </div>
+        </div>
+        <div id="right">
+            <div class="text2" id="text-element2">Test</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
