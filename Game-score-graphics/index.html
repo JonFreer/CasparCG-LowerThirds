@@ -189,11 +189,9 @@
     </style>
     <script src="/socket.io/socket.io.js"></script>
     <script>  
-        var socket = io.connect('http://localhost:4200');
+        var socket = io.connect();
         socket.on('connect', function (data) {
             socket.emit('join', 'Visuals');
-
-
         });
 
         socket.on('data', function (data) {
