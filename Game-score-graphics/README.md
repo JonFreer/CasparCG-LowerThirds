@@ -10,7 +10,7 @@ Requires express `npm i express` and socket.io `npm i socket.io`
 
 Runs on port 4200
 
-ip:4200 for visuals, io:4200/control for control 
+ip:4200 for visuals, ip:4200/control for control 
 
 
 

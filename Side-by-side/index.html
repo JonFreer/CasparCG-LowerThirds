@@ -3,7 +3,6 @@
 <head>
     <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="casparcg.js"></script>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
     <style>
         body{
@@ -51,8 +50,6 @@
             position: relative;
             overflow: visible;
             white-space: nowrap;
-            
-            
             padding-left: 0px;
         }
 
@@ -70,7 +67,7 @@
 
         .added2{
             transition-delay: 1s;
-            left:10px;
+            left:calc(10px*var(--scale));
         }
 
         .blue{
@@ -78,7 +75,6 @@
             transition: width 1.5s, left 1s;
             background-color: #213df2;
             left:calc(-70px*var(--scale));
-            
             position: relative;
             overflow:hidden;
             width:0%;
@@ -88,7 +84,6 @@
             transition-delay: 0s;
             left:0px;
             width:100%;
-            
         }
     </style>
 </head>

@@ -57,6 +57,20 @@ io.on('connection', function (client) {
         client.emit('score2', dataMain.teamTwoScore)
     });
 
+    client.on('score1-set', function (data) {
+        console.log("score1: " + data)
+        dataMain.teamOneScore = parseFloat(data)
+        client.broadcast.emit('score1', dataMain.teamOneScore)
+        client.emit('score1', dataMain.teamOneScore)
+    });
+
+    client.on('score2-set', function (data) {
+        console.log("score2: " + data)
+        dataMain.teamTwoScore = parseFloat(data)
+        client.broadcast.emit('score2', dataMain.teamTwoScore)
+        client.emit('score2', dataMain.teamTwoScore)
+    });
+
     client.on('name1', function (data) {
         console.log("name1: " + data)
         client.broadcast.emit('name1', data)
@@ -94,6 +108,7 @@ io.on('connection', function (client) {
 
     client.on('scale', function (data) {
         client.emit('scale', data);
+        dataMain.scale=data
         client.broadcast.emit('scale', data);
     });
 
