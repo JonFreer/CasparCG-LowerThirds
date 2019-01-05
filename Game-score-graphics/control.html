@@ -1,0 +1,278 @@
+<html>
+
+<head>
+    <title>Control</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        body {
+            display: grid;
+            /* grid-template-columns:auto 1fr auto; */
+            grid-template-rows: 10% 10% auto 1fr;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #505050;
+        }
+
+        button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            margin: 2px;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        #header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        #setup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; */
+            overflow: hidden;
+            background-color: rgb(206, 206, 206)
+        }
+
+        #left {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr ;
+        }
+
+        #right {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr ;
+        }
+
+        #mainControl {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .subControl {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        .setup {
+            height: 0;
+            transition: height 1s;
+        }
+
+        .setupAdd {
+            height: auto;
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .score {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+
+        .scoreButton1 {
+            background-color: blue;
+        }
+
+        .scoreButton2 {
+            background-color: red;
+        }
+
+        #submitBtn{
+            grid-column-start: 1;
+            grid-column-end: 3;
+
+        }
+    </style>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>  
+        setupOpen = false;
+        var socket = io.connect('http://localhost:4200');
+        socket.on('connect', function (data) {
+            socket.emit('join', 'Control');
+        });
+
+        socket.on('data', function (data) {
+            console.log(data)
+            document.getElementById("score1").value = data.teamOneScore
+            document.getElementById("score2").value = data.teamTwoScore
+            document.getElementById("score1-1").innerHTML = data.teamOneScore
+            document.getElementById("score2-1").innerHTML = data.teamTwoScore
+            document.getElementById("Name1").value = data.teamOneName
+            document.getElementById("Name2").value = data.teamTwoName
+            document.getElementById('btn1').style.backgroundColor = data.teamOneColour
+            document.getElementById('btn2').style.backgroundColor = data.teamOneColour
+            document.getElementById('btn3').style.backgroundColor = data.teamTwoColour
+            document.getElementById('btn4').style.backgroundColor = data.teamTwoColour
+            document.getElementById("colour1-input").value = data.teamOneColour
+            document.getElementById("colour2-input").value = data.teamTwoColour
+            state2(data.state)
+        });
+
+        socket.on('score1', function (data) {
+            console.log(data)
+            document.getElementById("score1-1").innerHTML = data
+            document.getElementById("score1").value = data
+
+        });
+
+        socket.on('name1', function (data) {
+            document.getElementById("Name1").value = data
+        });
+
+        socket.on('name2', function (data) {
+            document.getElementById("Name2").value = data
+        });
+
+        socket.on('score2', function (data) {
+            document.getElementById("score2-1").innerHTML = data
+            document.getElementById("score2").value = data
+        });
+
+        socket.on('colour1', function (data) {
+            document.getElementById('btn1').style.backgroundColor = data
+            document.getElementById('btn2').style.backgroundColor = data
+            document.getElementById("colour1-input").value = data
+
+        });
+
+        socket.on('colour2', function (data) {
+            document.getElementById('btn3').style.backgroundColor = data
+            document.getElementById('btn4').style.backgroundColor = data
+            document.getElementById("colour2-input").value = data
+
+        });
+
+        function scale(){
+            var scaleValue = prompt("Scale:", "1");
+            try{
+            socket.emit("scale",parseFloat(scaleValue))
+            }catch(e){
+                console.log("Not a number")
+            }
+        }
+
+        socket.on('state', function (data) {
+            state2(data)
+        });
+
+        function state(data) {
+            socket.emit('state', data);
+        }
+        function Score1(data) {
+            socket.emit('score1', data);
+        }
+
+        function Score2(data) {
+            console.log(data)
+            socket.emit('score2', data);
+        }
+
+        function state2(data) {
+            if (data == "on") {
+                document.getElementById('on').style.backgroundColor = 'green';
+                document.getElementById('off').style.backgroundColor = 'gray'
+            } else if (data == "off") {
+                document.getElementById('on').style.backgroundColor = 'gray'
+                document.getElementById('off').style.backgroundColor = 'red'
+            }
+        }
+
+        function submit() {
+            x = document.getElementById("Name1").value;
+            socket.emit('name1', x)
+            socket.emit('name2', document.getElementById("Name2").value)
+            socket.emit('score1-set', document.getElementById("score1").value)
+            socket.emit('score2-set', document.getElementById("score2").value)
+            socket.emit('colour1', document.getElementById("colour1-input").value)
+            socket.emit('colour2', document.getElementById("colour2-input").value)
+        }
+
+        function setup() {
+            if (setupOpen == false) {
+                var element = document.getElementById("setup");
+                element.classList.add("setupAdd")
+                setupOpen = true;
+            } else {
+                setupOpen = false;
+                document.getElementById("setup").classList.remove("setupAdd")
+            }
+        }
+
+        function reset() {
+            socket.emit("reset");
+        }
+        
+    </script>
+    <div id="header">
+        <button id="on" style="background-color:gray" onclick="state('on')">On</button>
+        <button id="off" style="background-color:gray" onclick="state('off')">Off</button>
+        <button style="background-color:gray" onclick="scale()">Scale</button>
+        <button style="background-color:gray" onclick="reset()">Reset</button>
+    </div>
+    <button onclick="setup()">Setup</button>
+    <div class="setup" id="setup">
+        <div id="left">
+            <div class="title">Team One</div>
+            <input type="text" id="Name1" value="Team One">
+            <div id="colour1">Set colour:
+                <input id="colour1-input" type="color">
+            </div>
+            <div id="setScore1">Score:
+                <input type="text" id="score1" value="0"> </div>
+
+        </div>
+        <div id="right">
+            <div class="title">Team Two</div>
+            <input type="text" id="Name2" value="Team Two">
+            <div id="colour2">Set colour:
+                <input id="colour2-input" type="color">
+            </div>
+            <div id="setScore1">Score:
+                <input type="text" id="score2" value="0"> </div>
+
+        </div>
+        <button id="submitBtn"onclick="submit()">Submit</button>
+
+    </div>
+    <div id="mainControl">
+        <div class="subControl">
+            <button class="scoreButton1" id="btn1" onclick="Score1(1)">+1</button>
+            <div>
+                <div class="score" id="score1-1">0</div>
+            </div>
+            <button class="scoreButton1" id="btn2" onclick="Score1(-1)">-1</button>
+        </div>
+        <div class="subControl">
+            <button class="scoreButton2" id="btn3" onclick="Score2(1)">+1</button>
+            <div>
+                <div class="score" id="score2-1">0</div>
+            </div>
+            <button class="scoreButton2" id="btn4" onclick="Score2(-1)">-1</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

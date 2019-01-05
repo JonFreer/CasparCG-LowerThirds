@@ -1,0 +1,284 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        body {
+            --scale: 1;
+            overflow: hidden;
+        }
+
+        #lower-third-outline {
+            height: calc(65px*var(--scale));
+            width: calc(1500px*var(--scale));
+            position: absolute;
+            bottom: calc(30px*var(--scale));
+            left: calc(50px*var(--scale));
+            display: grid;
+            grid-template-columns: min-content auto;
+            transition: width 1.5s;
+        }
+
+        #left {
+            width: 100%;
+            height: calc(65px*var(--scale));
+            position: relative;
+            transition: width 1.5s;
+        }
+
+        #right {
+            height: calc(65px*var(--scale));
+            overflow: hidden;
+        }
+
+        #text-element {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            letter-spacing: calc(-2px*var(--scale));
+            font-weight: 700;
+            font-size: calc(55px*var(--scale));
+            position: relative;
+            white-space: nowrap;
+            padding-right: calc(20px*var(--scale));
+        }
+
+        #text-element2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            font-size: calc(55px*var(--scale));
+            font-weight: 300;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+
+
+            padding-left: 0px;
+        }
+
+        .text1 {
+            left: calc(800px*var(--scale));
+            transition-delay: 0s;
+            transition: left 2s;
+
+        }
+
+        .text2 {
+            left: calc(-800px*var(--scale));
+            transition-delay: 0s;
+            transition: left 2s;
+            text-shadow: 3px 3px 8px #585858;
+        }
+
+        .added2 {
+            transition-delay: 1s;
+            left: 10px;
+        }
+
+        .blue {
+            transition-delay: 1.5s;
+            transition: width 1.5s, left 1s;
+            background-color: #213df2;
+            left: calc(-70px*var(--scale));
+
+            position: relative;
+            overflow: hidden;
+            width: 0%;
+        }
+
+        .blueAdd {
+            transition-delay: 0s;
+            left: 0px;
+            width: 100%;
+
+        }
+
+
+        #lower-third-outline-2 {
+            height: calc(65px*var(--scale));
+            width: calc(1500px*var(--scale));
+            position: absolute;
+            bottom: calc(30px*var(--scale));
+            right: calc(50px*var(--scale));
+            display: grid;
+            grid-template-columns: auto min-content;
+            grid-template-rows: 1fr;
+            transition: width 1.5s;
+            align-items: right;
+        }
+
+        #left-2 {
+            grid-column-start: 2;
+            width: 100%;
+            height: calc(65px*var(--scale));
+            position: relative;
+            transition: width 1.5s;
+        }
+
+        #right-2 {
+            grid-column-start: 1;
+            grid-row-start: 1;
+            height: calc(65px*var(--scale));
+            overflow: hidden;
+
+        }
+
+        #text-element-2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            letter-spacing: calc(-2px*var(--scale));
+            font-weight: 700;
+            font-size: calc(55px*var(--scale));
+            position: relative;
+            white-space: nowrap;
+            padding-left: calc(20px*var(--scale));
+        }
+
+        #text-element2-2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            font-size: calc(55px*var(--scale));
+            font-weight: 300;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+            text-align: right;
+
+            padding-right: 0px;
+        }
+
+        .text1-2 {
+            right: calc(800px*var(--scale));
+            transition-delay: 0s;
+            transition: right 2s;
+
+        }
+
+        .text2-2 {
+            right: calc(-800px*var(--scale));
+            transition-delay: 0s;
+            transition: right 2s;
+            text-shadow: 3px 3px 8px #585858;
+        }
+
+        .added2-2 {
+            transition-delay: 1s;
+            right: 10px;
+        }
+
+        .blue-2 {
+            transition-delay: 1.5s;
+            transition: width 1.5s, right 1s;
+            background-color: #213df2;
+            right: calc(-70px*var(--scale));
+            animation-direction: alternate;
+            direction: rtl;
+            position: relative;
+            overflow: hidden;
+            width: 0%;
+            float: right;
+        }
+
+        .blueAdd-2 {
+            transition-delay: 0s;
+            right: 0px;
+            width: 100%;
+
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>  
+        var socket = io.connect('http://localhost:4200');
+        socket.on('connect', function (data) {
+            socket.emit('join', 'Visuals');
+
+
+        });
+
+        socket.on('data', function (data) {
+            console.log(data)
+            document.getElementById("text-element").innerHTML = data.teamOneScore
+            document.getElementById("text-element2").innerHTML = data.teamOneName
+            document.getElementById("text-element-2").innerHTML = data.teamTwoScore
+            document.getElementById("text-element2-2").innerHTML = data.teamTwoName
+            document.getElementById("blue-1").style.backgroundColor = data.teamOneColour
+            document.getElementById("blue-2").style.backgroundColor = data.teamTwoColour
+            $("body").get(0).style.setProperty("--scale", data.scale);
+            state(data.state)
+        });
+
+        socket.on('state', function (data) {
+            state(data)
+        });
+
+        function state(data) {
+            if (data == "on") {
+                play()
+            } else if (data == "off") {
+                stop()
+            }
+        }
+
+        socket.on('score1', function (data) {
+            document.getElementById("text-element").innerHTML = data
+        });
+        socket.on('score2', function (data) {
+            console.log('score: ' + data)
+            document.getElementById("text-element-2").innerHTML = data
+        });
+
+        socket.on('name1', function (data) {
+            document.getElementById("text-element2").innerHTML = data
+        });
+
+        socket.on('name2', function (data) {
+            document.getElementById("text-element2-2").innerHTML = data
+        });
+
+        socket.on('colour1', function (data) {
+            document.getElementById("blue-1").style.backgroundColor = data
+        });
+
+        socket.on('colour2', function (data) {
+            document.getElementById("blue-2").style.backgroundColor = data
+        });
+
+        socket.on('scale', function (data) {
+            $("body").get(0).style.setProperty("--scale", data);
+        });
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <div id="lower-third-outline">
+        <div id="left">
+            <div id="blue-1" class="blue">
+                <div class="text1" id="text-element">0</div>
+            </div>
+        </div>
+        <div id="right">
+            <div class="text2" id="text-element2">Red Team</div>
+        </div>
+
+    </div>
+
+    <div id="lower-third-outline-2">
+        <div id="left-2">
+            <div id="blue-2" class="blue-2">
+                <div class="text1-2" id="text-element-2">0</div>
+            </div>
+        </div>
+        <div id="right-2">
+            <div class="text2-2" id="text-element2-2">Red Team</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
