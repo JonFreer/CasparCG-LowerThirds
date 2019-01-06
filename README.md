@@ -4,7 +4,8 @@ HTML lower thirds for casparCG
 
 Requires CasparCG 2.2
 
-  
+![Alt Text](https://imgur.com/23uPNoe.gif)
+![Alt Text](https://i.imgur.com/4zYqfqx.gif)
 
 Usage: 
 

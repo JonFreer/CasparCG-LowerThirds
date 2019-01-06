@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        body {
+            --scale: 1;
+            --back-color: #213df2;
+            overflow: hidden;
+        }
+
+        #lower-third-outline {
+            height: calc(100px*var(--scale));
+            position: absolute;
+            bottom: calc(30px*var(--scale));
+            left: calc(50px*var(--scale));
+            display: grid;
+            grid-template-columns: calc(5px*var(--scale)) 1fr auto;
+            grid-template-rows: calc(5px*var(--scale)) 1fr 0.5fr;
+        }
+
+        #top-line {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        #top-line-inner {
+            float: right;
+            background-color: var(--back-color);
+            height: -webkit-fill-available;
+        }
+
+        #side-line {
+
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 2;
+            grid-row-end: 4;
+        }
+
+        #side-line-inner {
+            float: top;
+            background-color: var(--back-color);
+            width: -webkit-fill-available;
+        }
+
+        #top-text {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+            overflow: hidden;
+        }
+
+        #bottom-text {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            overflow: hidden;
+        }
+
+        #blue {
+            background-color: var(--back-color);
+            width: fit-content;
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        #text-element {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            letter-spacing: calc(-2px*var(--scale));
+            font-weight: 400;
+            font-size: calc(50px*var(--scale));
+            position: relative;
+            white-space: nowrap;
+            padding-left: calc(10px*var(--scale));
+            padding-right: calc(10px*var(--scale));
+        }
+
+        #text-element2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            font-size: calc(27px*var(--scale));
+            font-weight: 700;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+            padding-left: calc(10px*var(--scale));
+            padding-right: calc(10px*var(--scale));
+            width: fit-content;
+        }
+
+        .top-text {
+            left: calc(-800px*var(--scale));
+            transition: left 2s;
+        }
+
+        .top-text-added {
+            transition-delay: 1.5s;
+            left: 0px;
+        }
+
+        .bottom-text {
+            left: calc(-700px*var(--scale));
+            transition: left 2s;
+            transition-delay: 0s;
+        }
+
+        .bottom-text-added {
+            transition-delay: 1.5s;
+            left: 0px;
+        }
+
+        .top-line {
+            width: 0%;
+            transition: width 1s;
+            transition-delay: 1.5s;
+        }
+
+        .top-line-added {
+            width: 100%;
+            transition-delay: 0s;
+        }
+
+        .side-line {
+            height: 0%;
+            transition: height 1s;
+            transition-delay: 0.5s;
+        }
+
+        .side-line-added {
+            height: 94.5%;
+            transition-delay: 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button> -->
+    <div id="lower-third-outline">
+        <div id="top-line">
+            <div id="top-line-inner" class="top-line">
+
+            </div>
+        </div>
+        <div id="top-text">
+            <div id="text-element" class="top-text"></div>
+        </div>
+        <div id="bottom-text">
+            <div id="blue" class="bottom-text">
+                <div id="text-element2"></div>
+            </div>
+        </div>
+        <div id="side-line">
+            <div id="side-line-inner" class="side-line">
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
