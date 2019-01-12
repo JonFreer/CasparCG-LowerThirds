@@ -1,0 +1,141 @@
+<html>
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <style>
+        body {
+            --scale: 1;
+            --back-color: blue;
+            overflow: hidden;
+        }
+
+        #lower-third-outline {
+            height: calc(100px*var(--scale));
+            position: absolute;
+            bottom: calc(30px*var(--scale));
+            left: calc(50px*var(--scale));
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1.5fr 1fr;
+        }
+
+        #top {
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        #bottom {
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        #bottom-inner {
+            background-color: var(--back-color);
+            margin-top: calc(5px*var(--scale));
+            overflow: hidden;
+        }
+
+
+        #text-element {
+            font-family: 'Roboto Condensed', sans-serif;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: calc(-2px*var(--scale));
+            font-weight: 700;
+            font-size: calc(50px*var(--scale));
+            position: relative;
+            white-space: nowrap;
+            padding-left: calc(10px*var(--scale));
+            z-index: 15;
+        }
+
+        #text-element2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            font-size: calc(27px*var(--scale));
+            font-weight: 300;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+            padding-right: calc(10px*var(--scale));
+            width: fit-content;
+            text-align: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #svg-text {
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: calc(-2px*var(--scale));
+            font-weight: 700;
+            font-size: calc(50px*var(--scale));
+        }
+
+        #svg-fill {
+            fill: white;
+        }
+
+        .knockout {
+            height: calc(60px*var(--scale));
+            width: 100%;
+            position: absolute;
+            top: 0px;
+        }
+
+        .top-move {
+            clip-path: inset(0px 100% 0px 0px);
+            transition: clip-path 1.5s;
+        }
+
+        .top-added {
+            clip-path: inset(0px 0px 0px 0px);
+        }
+
+        .bottom-text {
+            clip-path: inset(0px 0px 0px 100%);
+            transition: clip-path 1.5s;
+        }
+
+        .bottom-text-added {
+            clip-path: inset(0px 0px 0px 0px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button class="button" onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button> -->
+    <div id="lower-third-outline">
+        <div id="top">
+            <div id="text-element"></div>
+            <div id="top-inner">
+
+                <div class="knockout top-move">
+
+                    <svg class="knockout-text-container" width="100%" height="100%">
+
+                        <rect id="svg-fill" class="knockout-text-bg" width="100%" height="100%" fill="#000" x="0" y="0" fill-opacity="1" mask="url(#knockout-text)"
+                        />
+
+                        <mask id="knockout-text">
+                            <rect width="100%" height="100%" fill="#fff" x="0" y="0" />
+                            <text id="svg-text" x="50%" y="77%" fill="#000" text-anchor="middle"></text>
+                        </mask>
+
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <div id="bottom-inner" class="bottom-text">
+
+                <div id="text-element2"></div>
+
+            </div>
+        </div>
+
+</body>
+
+</html>
