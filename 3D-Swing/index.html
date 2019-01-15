@@ -1,0 +1,103 @@
+<html>
+
+<head>
+
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="../font-css/fonts.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet"> -->
+    <style>
+        body {
+            --scale: 1;
+            --back-color: white;
+            text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+        }
+
+        #grid-mask {
+            height: auto;
+            position: absolute;
+            bottom: calc(30px*var(--scale));
+            left: calc(50px*var(--scale));
+            overflow: hidden;
+            perspective: 700px;
+        }
+
+        #lower-third-outline {
+            padding-left: 30px;
+            height: calc(100px*var(--scale));
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1.5fr 1fr;
+            transition: transform 1s cubic-bezier(0.7, 2.4, 0.68, 0.53);
+            transform-origin: top;
+        }
+
+        #top {
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        #bottom {
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        #text-element {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: white;
+            letter-spacing: calc(-1px*var(--scale));
+            font-weight: 700;
+            font-size: calc(50px*var(--scale));
+            position: relative;
+            white-space: nowrap;
+            padding-right: calc(10px*var(--scale));
+            z-index: 15;
+        }
+
+        #text-element2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: var(--back-color);
+            font-size: calc(27px*var(--scale));
+            font-weight: 300;
+            position: relative;
+            overflow: visible;
+            white-space: nowrap;
+            padding-right: calc(10px*var(--scale));
+            width: fit-content;
+            text-align: center;
+        }
+
+        .swing {
+            transform: rotateX(-105deg);
+        }
+
+        .swing-added {
+            transform: rotateX(0deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <button class="button" onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button> -->
+    <div id="grid-mask">
+        <div class="swing" id="lower-third-outline">
+            <div id="top">
+                <div id="top-inner">
+                    <div id="text-element"></div>
+                </div>
+            </div>
+            <div id="bottom">
+                <div id="bottom-inner" class="bottom-text">
+                    <div class="bottom-text" id="text-element2"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
