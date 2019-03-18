@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="casparcg.js"></script>
+    <link href="../font-css/fonts.css" rel="stylesheet">
+    <style>
+        body {
+            --scale: 1;
+            overflow: hidden;
+            /* background:red; */
+        }
+
+        #lower-third-outline {
+            height: calc(40px*var(--scale));
+            width: auto;
+            position: absolute;
+            bottom: calc(50px*var(--scale));
+            left: calc(0px*var(--scale));
+            
+        }
+
+        #text-container{
+            height:auto;
+            width:auto;
+            position: relative;
+        }
+
+        #mainText{
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: calc(25px*var(--scale));
+            position: relative;
+            margin-left:20px;
+            margin-right:20px;
+            top:5px;
+
+        }
+
+        #text{
+            width:100%;
+            /* background:white; */
+            /* margin-left:40px; */
+            /* heig ht: calc(40px*var(--scale)); */
+            
+            /* padding-top:10px; */
+            color: #5e5e5e;
+            /* letter-spacing: calc(-2px*var(--scale)); */
+            font-weight: 400;
+            font-size: calc(25px*var(--scale));
+            /* position: relative; */
+            white-space: nowrap;
+            /* left: calc(65px*var(--scale)); */
+            /* padding-left:30px; */
+            /* padding-right:30px; */
+            position:relative;
+            height:100%;
+            /* padding-top:5px; */
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,efefef+0,ededed+9,fefefe+100 */
+background: #e2e2e2; /* Old browsers */
+background: -moz-linear-gradient(top, #e2e2e2 0%, #efefef 0%, #ededed 9%, #fefefe 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #e2e2e2 0%,#efefef 0%,#ededed 9%,#fefefe 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #e2e2e2 0%,#efefef 0%,#ededed 9%,#fefefe 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+        }
+
+        #box{
+            height:auto;
+            width:50px;
+            
+            width:100%;
+            color:white;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size:25px;
+            top:10px;
+            padding-top:5px;
+            padding-left:10px;
+
+        }
+
+        #main-container{
+            display: grid;
+            grid-template-columns:100px auto;
+            /* padding-left:70px; */
+            height:100%;
+
+
+
+        }
+        .move{
+            left:-1000px;
+        }
+
+        .moveAdd{
+            left:0px;
+        }
+
+        #textContainer{
+            position: relative;
+            -webkit-box-shadow: 4px 6px 53px -10px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 6px 53px -10px rgba(0,0,0,0.75);
+box-shadow: 4px 6px 53px -10px rgba(0,0,0,0.75);
+transition:left 2s;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div id="lower-third-outline">
+        <div id="main-container">
+        <div id="box"></div>
+        <div id="textContainer" class="move">
+        <div id="text" >
+            <div id="mainText">
+            How are you going to improve mental health around campus?
+        </div>
+        </div>
+        </div>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
